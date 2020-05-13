@@ -10,7 +10,8 @@ rm /.kube/config_template
 
 #Helm preparation
 #TODO support chart version specification
-export CHART_VERSION_ARGUMENT="--version 0.1.0"
+#export CHART_VERSION_ARGUMENT="--version 0.1.0"
+export CHART_VERSION_ARGUMENT=""
 export RELEASE_NAME="${RELEASE_NAME:=${DRONE_REPO_NAME}}"
 export TIMEOUT="${TIMEOUT:=5m}"
 
@@ -20,8 +21,7 @@ if test -f "$ENVIRONMENT_SPECIFIC_FILE"; then
   export ENVIRONMENT_VALUES_ARGUMENT="-f ${ENVIRONMENT_SPECIFIC_FILE}"
 fi
 
-helm repo add k8s-apps https://rubasace.github.io/kubernetes-application-chart/
-helm repo update
+helm repo add k8s-apps https://rubasace.github.io/k8s-application-chart/
 
 ##TODO make Helm fail when deployment fails
 helm upgrade "${RELEASE_NAME}"  k8s-apps/kubernetes-application ${CHART_VERSION_ARGUMENT} --install -n ${NAMESPACE} --atomic --debug --wait --timeout ${TIMEOUT} \
