@@ -2,6 +2,7 @@
 kind: pipeline
 name: default
 
+type: docker
 steps:
   - name: bake
     image: plugins/docker
@@ -19,6 +20,6 @@ steps:
         - master
 ---
 kind: signature
-hmac: de8387243d915d1fcc5f682b173f3608b38990829720caf514e0b8900687fac2
+hmac: 08cac761ffcc66648f9cb143e018f92bc7258d8fc07cb507eecd34ef5a08d5f0
 
 ...
