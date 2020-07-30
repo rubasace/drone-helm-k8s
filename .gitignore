@@ -7,5 +7,7 @@
 !.gitignore
 !entrypoint.sh
 !Dockerfile
+!LICENSE
+!README.md
 !kube_config
 !kube_config/**
