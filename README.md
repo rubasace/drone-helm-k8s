@@ -88,6 +88,8 @@ deployment:
 
 Those are the values that will be passed to the Helm chart when deploying the application. For a full list of the supported values, have a look at the chart documentation.
 
+> **_NOTE:_** the image has to be the one generated in the bake stage. At the moment cannot be automatically guessed by the extension.
+
 ### Namespace-specific values
 
 This extension supports overlaying of values, by creating additional `values-{namespace}.yaml` files. While it isn't mandatory, this mechanism is key in order to avoid repetition of values: all common values for every environment can be specified in the `values.yaml` file, only putting the environment-specific values in separate files
