@@ -57,15 +57,17 @@ steps:
 
 In order to configure the deployment, we have to specify a few environment variables:
 
-|  Variable |  Description | Mandatory | Default Value  | Example Value  | 
-|---|---|---|---|---|
-| CHART_VERSION_ARGUMENT  | Version of the Helm Chart to use. It's recomendable to specify it, to ensure the deployment is reproducible and to avoid surprises when the chart evolves independently from the application.  | `false` | latest  |  0.1.24  |
-| K8S_CERT_AUTHORITY_DATA  | `certificate-authority-data` value on the Kubernetes config file.   | `true` |   |  LS0tLS2CRUdPFiBDRVJUSUZJQ0FURSOtLS98URKtC...  |
-| K8S_SERVER  | `server` value on the Kubernetes config file.   | `true` |   |  https://29.29.29.29:16443  |
+|  Variable |  Description | Mandatory | Example Value  | 
+|---|---|---|---|
+| CHART_VERSION_ARGUMENT  | Version of the Helm Chart to use.*  | `false` |  0.1.24  |
+| K8S_CERT_AUTHORITY_DATA  | `certificate-authority-data` value on the Kubernetes config file.   | `true` |  LS0tLS2CRUdPFiBDRVJUSUZJQ0FURSOtLS98URKtC...  |
+| K8S_SERVER  | `server` value on the Kubernetes config file.   | `true` |  https://29.29.29.29:16443  |
 | K8S_USER  | User name to access the cluster.  | `true` | |  foo  |
-| K8S_PASSWORD  | user password to access the cluster.   |`true`  |   |  1234  |
-| NAMESPACE  | K8s namespace to deploy the application in.  |  `true` |   |  production |
+| K8S_PASSWORD  | user password to access the cluster.   |`true`  |  1234  |
+| NAMESPACE  | K8s namespace to deploy the application in.  |  `true` |  production |
 | IMAGE_TAG  | Tag of the image to deploy. It should be the same generated on the bake step. | `true`  |   | 1.0.0.${CI_BUILD_NUMBER}  |
+
+* It's recomended to specify the chart version, to ensure the deployment is reproducible and to avoid surprises when the chart evolves independently of the application.
 
 > **_NOTE:_** this extension has been tested in POCs against [microk8s](https://microk8s.io/) clusters. Other k8s distributions like GKE might not connect in the same way. It should be easy to adapt by changing the logic of replacing the `config_template` values in the `entrypoint.sh` script for something more suitable. 
 
