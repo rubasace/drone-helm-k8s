@@ -1,25 +1,21 @@
 ---
 kind: pipeline
 name: default
-
 type: docker
+
 steps:
   - name: bake
+    secrets: [ docker_username, docker_password ]
     image: plugins/docker
-    settings:
-      username:
-        from_secret: docker_user
-      password:
-        from_secret: docker_pass
-      repo: rubasace/drone-helm-k8s
-      tags:
-        - 1.0.0.${CI_BUILD_NUMBER}
-        - latest
+    repo: rubasace/drone-helm-k8s
+    tags:
+      - 1.0.0.${CI_BUILD_NUMBER}
+      - latest
     when:
       branch:
         - master
 ---
 kind: signature
-hmac: 08cac761ffcc66648f9cb143e018f92bc7258d8fc07cb507eecd34ef5a08d5f0
+hmac: c59895e6b922305c82fe46ca68d733c4a9c91f0dfd51b42630ccd0a7af8aa963
 
 ...
